@@ -1,75 +1,79 @@
 import styled from "styled-components";
+import TodoKolonka from "./TodoKolonka";
+import BtnAdd from "./BtnAdd";
+import InputHeaderKolonka from "./InputHeaderKolonka";
+import { useState } from "react";
+import BtnExit from "./BtnExit";
+import { useDispatch, useSelector } from "react-redux/es/exports";
+import { KolonkaListAction } from "../../store/reducers/KolonkaListSlices";
 
+function TodoList() {
+    const [showInput, setShowInput] = useState(false);
+    const [inputValue, setInputValue] = useState('');
+    const dispatch = useDispatch();
+    const store = useSelector(state=>state.listItem);
+    // console.log(store);
 
-function KolonkaAdd(){
-    return (
-        <KolonkaAddBlock>Добавить карточку</KolonkaAddBlock>
-    )
-}
+    const inputHandleChange = (e)=>{
+        setInputValue(e.target.value);
+    }
 
-const KolonkaAddBlock = styled.button`
-    background-color: #fff;
-    text-align: left;
-    padding: 10px;
-    border-radius: 5px;
-    width: 100%;
-    border: none;
-    cursor: pointer;
-`;
+    const handleShow = ()=>{
+        if(showInput){
+            dispatch(KolonkaListAction.addKolonka({
+                id: Math.random(),
+                header: inputValue,
+                items: []
+            }));
+            setInputValue('');
+        } else {
+            setShowInput(true);
+        }
+    }
 
-function KolonkaItem(){
-    return (
-        <KolonkaItemBlock>
-            Hello world
-        </KolonkaItemBlock>
-    )
-}
-
-const KolonkaItemBlock = styled.div`
-    background-color: #fff;
-    text-align: left;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-`;
-
-function TodoKolonka(props){
-    return (
-        <KolonkaBlock>
-            <KolonkaHader>{props.header}</KolonkaHader>
-            <KolonkaItem />
-            <KolonkaAdd />
-        </KolonkaBlock>
-    )
-}
-
-const KolonkaHader = styled.h2`
-    font-size: 1.2rem;
-    color: #51617A;
-    margin: 0;
-    font-weight: bold;
-    text-align: left;
-    padding: 10px;
-`;
-
-const KolonkaBlock = styled.div`
-    border-radius: 5px;
-    padding: 8px;
-    background-color: #EBECF0;
-    /* height: 200px; */
-    width: 300px;
-`;
-
-function TodoList(){
     return (
         <TodoListBlock>
-            <TodoKolonka header="Hello world"/>
+            {
+                store.map((elem, index)=>{
+                    return <TodoKolonka key={elem.id} index={index} header={elem.header} />
+                })
+            }
+            <BtnCont>
+                {
+                    showInput && <InputHeaderKolonka value={inputValue} onChange={inputHandleChange} />
+                }
+                <BtnBlock>
+                    <BtnAdd onClick={handleShow} text="+ Добавить колонку" primary={true} />
+                    {
+                        showInput && <BtnExit />
+                    }
+                </BtnBlock>
+            </BtnCont>
         </TodoListBlock>
     )
 }
 export default TodoList;
 
+const BtnBlock = styled.div`
+    display: flex;
+`
+
+const BtnCont = styled.div`
+    /* border: 1px solid red; */
+    padding: 5px;
+    /* background-color: red; */
+    display: flex;
+    background-color: #EBECF0;
+    flex-flow: column nowrap;
+    width: 250px;
+`;
+
 const TodoListBlock = styled.div`
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    /* border: 1px solid red; */
     margin-top: 20px;
     margin-left: 20px;
 `;
