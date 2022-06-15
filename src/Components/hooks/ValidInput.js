@@ -29,6 +29,9 @@ export const  ValidInput = (state)  =>  {
     const inputValue = (e) => {
         setValue(e.target.value);
     }
+
+
+
   return {
       value,
       inputValue,

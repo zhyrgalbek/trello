@@ -1,7 +1,15 @@
-// import ValidInput from '../Hooks/ValidInput';
 import styled, { createGlobalStyle } from "styled-components";
 import { ValidInput } from "../hooks/ValidInput";
+import { FetchUser } from "../../store/reducers/LoginSlices";
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from "react";
+
+
+
 const Authorization = (props) => {
+    const dispatch = useDispatch()
+    const store = useSelector(state => state.user.bool)
+    console.log(store);
     const {
         value: emailValue,
         inputValue: emailInput,
@@ -37,12 +45,21 @@ const Authorization = (props) => {
         }
     });
 
+
+
     const submitForm = (e) => {
+        
         e.preventDefault();
         if (emailValue === '' || passwordValue === '') {
             emailBlur();
             passwordBlur();
+            return;
+            
         }
+        dispatch(FetchUser({
+            email: emailValue,
+            password: passwordValue
+        }))
 
         if (emailsValue || passwordIsValue || emailValue === '' || passwordValue === '') {
             return
@@ -51,7 +68,8 @@ const Authorization = (props) => {
             passwordReset();
         }
     }
-
+    let ErrorLogin =<P>Аккаунт с таким адресом электронной почты не существует</P>;
+ 
 
 
 
@@ -64,10 +82,11 @@ const Authorization = (props) => {
 
                     <div>
                         <h1>Вход Trello</h1>
+                        {!store && ErrorLogin}
                         <div className={`${emailsValue ? "error" : ""}`}>
-
-                            <Input onBlur={emailBlur} type="text" value={emailValue} onChange={emailInput} placeholder='Укажите адрес электронной почты...' />
-                            {emailsValue && <P>Поле обезятельно с '@'</P>}
+    
+                        <Input onBlur={emailBlur} type="text" value={emailValue} onChange={emailInput} placeholder='Укажите адрес электронной почты...' />
+                        {emailsValue && <P>Отсутствует адрес электронной почты</P>}
                         </div>
                         <div className={`${passwordIsValue ? "error" : ""}`}>
 
@@ -92,6 +111,7 @@ const Authorization = (props) => {
                     <Img1
                         src="https://wac-cdn-2.atlassian.com/image/upload/f_auto,q_auto/dam/jcr:8a794ead-879b-460e-b6be-1189ee66ab66/atlassian_logo-1200x630.png"
                     />
+                   
                 </Form>
                 
             </Cont>
@@ -111,13 +131,14 @@ height: 600px;
 
 const P = styled.p`
 color: red;
+
 `
 
-const Img = createGlobalStyle`
+const Img = createGlobalStyle` 
 body{
     min-height: 100vh;
     background: url('https://site.eventplanon.com/wp-content/uploads/2020/06/all-in-one-tools.png') 2% 90% no-repeat fixed,
-    url('https://i.pinimg.com/originals/ef/d4/28/efd428cd0e9766626929d2ec12f04bcb.png') 98% 90% no-repeat fixed  ;
+                  url('https://i.pinimg.com/originals/ef/d4/28/efd428cd0e9766626929d2ec12f04bcb.png') 98% 90% no-repeat fixed  ;
     background-repeat: no-repeat;
     background-size: 30%, 30%;
     background-color: #F9FAFC;
@@ -129,9 +150,9 @@ const Form = styled.form`
 -webkit-box-shadow: 0px 0px 19px 5px rgba(64, 58, 58, 0.72);
 box-shadow: 0px 0px 13px -4px black;
 width: 400px;
-height: 550px;
+min-height: 450px;
 padding: 40px;
-/* padding-bottom: 100px; */
+padding-bottom: 100px;
 background-color: white;
 `
 
@@ -161,7 +182,7 @@ const Button = styled.button`
 width: 100%;
 background-color: #5AAC44;
 margin-top: 20px;
-height: 40px;
+height: 35px;
 border: none;
 border-radius: 3px;
 color: white;
@@ -193,10 +214,12 @@ const Img1 = styled.img`
     margin-top: 40px;
     width: 220px;
     height: 100px;
+    
 `
 
 const H1 = styled.h1`
 width: 100%;
-font-family: inherit;
+font-size: 34px;
+padding-left: 5px;
 
 `
