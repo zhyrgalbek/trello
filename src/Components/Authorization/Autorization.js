@@ -162,7 +162,7 @@ body{
     min-height: 100vh;
     background: url('https://site.eventplanon.com/wp-content/uploads/2020/06/all-in-one-tools.png') 2% 90% no-repeat fixed,
                 url('https://i.pinimg.com/originals/ef/d4/28/efd428cd0e9766626929d2ec12f04bcb.png') 98% 90% no-repeat fixed;
-                /* url(${assets}) no-repeat fixed ; */
+          
     background-repeat: no-repeat;
     background-size: 30%, 30%, 100%;
     background-color: #F9FAFC;
