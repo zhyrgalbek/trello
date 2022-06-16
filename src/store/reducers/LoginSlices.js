@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 
-
 const initialState = {
     gmail: 'admin@gmail.com',
     password: 'admin',

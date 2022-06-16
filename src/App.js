@@ -2,6 +2,7 @@ import './App.css';
 import Authorization from './Components/Authorization/Autorization';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useSelector } from 'react-redux';
+import Profile from './Components/Profile/Profile';
 
 
 function App() {
@@ -26,10 +27,11 @@ function App() {
     
     return (
       <div className="App">
-       <Authorization/> 
+       <Profile />
       </div>
     );
   }
+
 }
 
 export default App;

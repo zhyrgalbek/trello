@@ -2,14 +2,11 @@ import styled, { createGlobalStyle } from "styled-components";
 import { ValidInput } from "../hooks/ValidInput";
 import { FetchUser } from "../../store/reducers/LoginSlices";
 import { useDispatch, useSelector } from 'react-redux';
-import assets from '../../assets/login.jpg'
-import { AuthorActions } from "../../store/reducers/LoginSlices";
-
-
 
 const Authorization = (props) => {
     const dispatch = useDispatch()
     const {proverkaLogin, proLogin} = useSelector(state => state.user)
+    const store = useSelector(state => state.user.bool)
     // console.log(store);
     const {
         value: emailValue,
@@ -42,9 +39,11 @@ const Authorization = (props) => {
         if (value.trim().length < 5 || value.trim() === '') {
             return true;
         } else {
-            return false
+            return false;
         }
     });
+
+    // console.log(passwordIsValue);
 
 
 
@@ -116,16 +115,22 @@ const Authorization = (props) => {
 
                     </div>
                     <Img />
-                
+
                 </Form>
                
                 
             </Cont>
+
           <div>
             <P1>Политика конфиденциальности ・ Условия использования</P1>
             <Img1
              src="https://wac-cdn-2.atlassian.com/image/upload/f_auto,q_auto/dam/jcr:8a794ead-879b-460e-b6be-1189ee66ab66/atlassian_logo-1200x630.png"/>
              </div>
+
+                    {/* <Img1
+                        src="https://wac-cdn-2.atlassian.com/image/upload/f_auto,q_auto/dam/jcr:8a794ead-879b-460e-b6be-1189ee66ab66/atlassian_logo-1200x630.png"
+                    /> */}
+
         </Div>
     </section>
 }       
