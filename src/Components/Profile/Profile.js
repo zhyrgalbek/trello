@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 import TodoList from './TodoList';
 import ProfileHeader from './ProfileHeader';
+import Modal from './Modal/Modal';
 
 
 
 function Profile() {
     return (
         <ProfileBlock>
+            <Modal />
             <ProfileHeader />
             <TodoList />
         </ProfileBlock>

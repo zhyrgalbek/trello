@@ -11,15 +11,15 @@ function TodoList() {
     const [showInput, setShowInput] = useState(false);
     const [inputValue, setInputValue] = useState('');
     const dispatch = useDispatch();
-    const store = useSelector(state=>state.listItem);
+    const store = useSelector(state => state.listItem);
     // console.log(store);
 
-    const inputHandleChange = (e)=>{
+    const inputHandleChange = (e) => {
         setInputValue(e.target.value);
     }
 
-    const handleShow = ()=>{
-        if(showInput){
+    const handleShow = () => {
+        if (showInput) {
             dispatch(KolonkaListAction.addKolonka({
                 id: Math.random(),
                 header: inputValue,
@@ -34,7 +34,7 @@ function TodoList() {
     return (
         <TodoListBlock>
             {
-                store.map((elem, index)=>{
+                store.map((elem, index) => {
                     return <TodoKolonka key={elem.id} index={index} header={elem.header} />
                 })
             }
