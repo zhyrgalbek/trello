@@ -6,7 +6,9 @@ const initialState = {
     gmail: 'admin@gmail.com',
     password: 'admin',
     bool: true,
-    spiner: false
+    spiner: false,
+    proverkaLogin: false,
+    proLogin: false,
 }
 
 const AuthorizationSlices = createSlice({
@@ -14,6 +16,7 @@ const AuthorizationSlices = createSlice({
     initialState: initialState,
     reducers: {
         toggle (state){
+            console.log(state);
             state.bool = !state.bool
         },
         setSpiner(state) {
@@ -25,13 +28,19 @@ const AuthorizationSlices = createSlice({
         },
         login (state, action) {
 
-            if(action.payload.gmail === state.gmail && action.payload.password === state.password){
-                state.bool = true
+        
+            if(state.gmail === action.payload.email && state.password === action.payload.password){
+                console.log('hi');
+                state.proverkaLogin = true
+                state.proLogin = false
             }else{
-                state.bool = false
+                state.proverkaLogin = false
+                state.proLogin = true
             }
+        
             
         }
+        
     }
 });
 
@@ -39,9 +48,11 @@ export const AuthorActions = AuthorizationSlices.actions;
 export default AuthorizationSlices;
 
 export const FetchUser = (data) => {
-    console.log(data);
+    // console.log(data);
+    
     return (dispatch) => {
         dispatch(AuthorActions.setSpiner())
+        
         setTimeout(() => {
             dispatch(AuthorActions.login(data))
             dispatch(AuthorActions.endSpiner())
