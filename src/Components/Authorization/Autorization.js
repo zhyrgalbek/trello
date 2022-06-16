@@ -2,14 +2,13 @@ import styled, { createGlobalStyle } from "styled-components";
 import { ValidInput } from "../hooks/ValidInput";
 import { FetchUser } from "../../store/reducers/LoginSlices";
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from "react";
 
 
 
 const Authorization = (props) => {
     const dispatch = useDispatch()
     const store = useSelector(state => state.user.bool)
-    console.log(store);
+    // console.log(store);
     const {
         value: emailValue,
         inputValue: emailInput,
@@ -38,12 +37,14 @@ const Authorization = (props) => {
         resetValue: passwordReset
 
     } = ValidInput((value) => {
-        if (value.trim().lenght > 5 || value.trim() === '') {
+        if (value.trim().length < 5 || value.trim() === '') {
             return true;
         } else {
-            return false
+            return false;
         }
     });
+
+    // console.log(passwordIsValue);
 
 
 
@@ -108,13 +109,13 @@ const Authorization = (props) => {
 
                     </div>
                     <Img />
-                    <Img1
-                        src="https://wac-cdn-2.atlassian.com/image/upload/f_auto,q_auto/dam/jcr:8a794ead-879b-460e-b6be-1189ee66ab66/atlassian_logo-1200x630.png"
-                    />
                    
                 </Form>
                 
             </Cont>
+                    <Img1
+                        src="https://wac-cdn-2.atlassian.com/image/upload/f_auto,q_auto/dam/jcr:8a794ead-879b-460e-b6be-1189ee66ab66/atlassian_logo-1200x630.png"
+                    />
         </Div>
     </section>
 }
@@ -126,7 +127,7 @@ const Cont = styled.div`
 width: 100%;
 display: flex;
 justify-content: center;
-height: 600px;
+height: auto;
 `
 
 const P = styled.p`
@@ -150,9 +151,9 @@ const Form = styled.form`
 -webkit-box-shadow: 0px 0px 19px 5px rgba(64, 58, 58, 0.72);
 box-shadow: 0px 0px 13px -4px black;
 width: 400px;
-min-height: 450px;
+min-height: 400px;
 padding: 40px;
-padding-bottom: 100px;
+padding-bottom: 50px;
 background-color: white;
 `
 
