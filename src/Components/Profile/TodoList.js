@@ -11,31 +11,35 @@ function TodoList() {
     const [showInput, setShowInput] = useState(false);
     const [inputValue, setInputValue] = useState('');
     const dispatch = useDispatch();
-    const store = useSelector(state=>state.listItem);
-    // console.log(store);
+    const store = useSelector(state => state.listItem.columns);
 
-    const inputHandleChange = (e)=>{
+    const inputHandleChange = (e) => {
         setInputValue(e.target.value);
     }
 
-    const handleShow = ()=>{
-        if(showInput){
+    const handleShow = () => {
+        if (showInput) {
             dispatch(KolonkaListAction.addKolonka({
                 id: Math.random(),
                 header: inputValue,
                 items: []
             }));
             setInputValue('');
+            removeShow();
         } else {
             setShowInput(true);
         }
     }
 
+    const removeShow = ()=>{
+        setShowInput(false);
+    }
+
     return (
         <TodoListBlock>
             {
-                store.map((elem, index)=>{
-                    return <TodoKolonka key={elem.id} index={index} header={elem.header} />
+                store.map((elem, index) => {
+                    return <TodoKolonka key={elem.id} index={index} header={elem.header} kolonkaIndex={index} />
                 })
             }
             <BtnCont>
@@ -45,7 +49,7 @@ function TodoList() {
                 <BtnBlock>
                     <BtnAdd onClick={handleShow} text="+ Добавить колонку" primary={true} />
                     {
-                        showInput && <BtnExit />
+                        showInput && <BtnExit onClick={removeShow} />
                     }
                 </BtnBlock>
             </BtnCont>

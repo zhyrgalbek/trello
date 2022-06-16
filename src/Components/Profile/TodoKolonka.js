@@ -9,7 +9,7 @@ import BtnExit from './BtnExit';
 
 function TodoKolonka(props) {
     const dispatch = useDispatch();
-    const store = useSelector(state => state.listItem[props.index].items);
+    const store = useSelector(state => state.listItem.columns[props.index].items);
     // console.log(store);
     const [textValue, setTextValue] = useState('');
     const [showTextArea, setShowTextArea] = useState(false);
@@ -40,9 +40,8 @@ function TodoKolonka(props) {
         <KolonkaBlock>
             <KolonkaHader>{props.header}</KolonkaHader>
             {
-                store.map((item) => {
-                    console.log(item);
-                    return <KolonkaItem key={item.id} text={item.text} />
+                store.map((item, index) => {
+                    return <KolonkaItem key={item.id} text={item.text} index={index} kolonkaIndex={props.kolonkaIndex} />
                 })
             }
             {
