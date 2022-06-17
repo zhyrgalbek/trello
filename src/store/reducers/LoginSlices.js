@@ -29,7 +29,6 @@ const AuthorizationSlices = createSlice({
 
         
             if(state.gmail === action.payload.email && state.password === action.payload.password){
-                console.log('hi');
                 state.proverkaLogin = true
                 state.proLogin = false
             }else{
@@ -47,7 +46,6 @@ export const AuthorActions = AuthorizationSlices.actions;
 export default AuthorizationSlices;
 
 export const FetchUser = (data) => {
-    // console.log(data);
     
     return (dispatch) => {
         dispatch(AuthorActions.setSpiner())

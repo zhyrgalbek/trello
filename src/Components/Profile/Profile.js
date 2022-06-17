@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import TodoList from './TodoList';
 import ProfileHeader from './ProfileHeader';
+import assets from '../../assets/login.jpg'
 
 
 
@@ -15,7 +16,9 @@ function Profile() {
 export default Profile;
 
 const ProfileBlock = styled.div`
-    background-color: #A98DB9;
+    background: url(${assets}) 0% 0%;
+    background-size: 100%;
     min-height: 100vh;
+
 `;
 

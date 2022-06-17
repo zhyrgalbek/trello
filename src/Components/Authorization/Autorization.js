@@ -68,7 +68,7 @@ const Authorization = (props) => {
             passwordReset();
         }
     }
-    let ErrorLogin =<P>Аккаунт с таким адресом электронной почты не существует</P>;
+    let ErrorLogin =<P>Аккаунтта с таким адресом электронной почты не существует</P>;
     let error = !proverkaLogin && proLogin
 
 
@@ -91,7 +91,7 @@ const Authorization = (props) => {
                         <div className={`${passwordIsValue ? "error" : ""}`}>
 
                             <Input onBlur={passwordBlur} type="password" value={passwordValue} onChange={passwordInput} placeholder='Введите пароль...'   />
-                            {passwordIsValue && <P>пароль должен быть меньше с 5</P>}
+                            {passwordIsValue && <P3>Пароль должен состоять максимум из 5 символов</P3>}
                         </div>
 
                     </div>
@@ -127,10 +127,6 @@ const Authorization = (props) => {
              src="https://wac-cdn-2.atlassian.com/image/upload/f_auto,q_auto/dam/jcr:8a794ead-879b-460e-b6be-1189ee66ab66/atlassian_logo-1200x630.png"/>
              </div>
 
-                    {/* <Img1
-                        src="https://wac-cdn-2.atlassian.com/image/upload/f_auto,q_auto/dam/jcr:8a794ead-879b-460e-b6be-1189ee66ab66/atlassian_logo-1200x630.png"
-                    /> */}
-
         </Div>
     </section>
 }       
@@ -149,6 +145,15 @@ const P = styled.p`
 color: red;
 margin: 0;
 
+`
+
+const DivError = styled.div`
+border: 1px solid red;
+`
+
+const P3  = styled.p`
+color: red;
+font-size: 15px
 `
 
 const P1 = styled.p`
@@ -195,6 +200,9 @@ const Input = styled.input`
     &:focus{
     box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.25);
     outline: none;
+    }
+   &.error{
+        border: 1px solid red;
     }
  
 `
