@@ -3,11 +3,20 @@ import TodoList from './TodoList';
 import ProfileHeader from './ProfileHeader';
 import assets from '../../assets/login.jpg'
 
+import Modal from './Modal/Modal';
+import { useSelector } from 'react-redux';
+
+
 
 
 function Profile() {
+    const isModal = useSelector(state=>state.listItem.isModal);
+
     return (
         <ProfileBlock>
+            {
+                isModal && <Modal />
+            }
             <ProfileHeader />
             <TodoList />
         </ProfileBlock>

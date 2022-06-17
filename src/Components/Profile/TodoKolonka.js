@@ -9,8 +9,9 @@ import BtnExit from './BtnExit';
 
 function TodoKolonka(props) {
     const dispatch = useDispatch();
-    const store = useSelector(state => state.listItem[props.index].items);
-    // console.log(store);
+    const store = useSelector(state => state.listItem.columns[props.index].items);
+
+
     const [textValue, setTextValue] = useState('');
     const [showTextArea, setShowTextArea] = useState(false);
     const addItem = () => {
@@ -35,14 +36,24 @@ function TodoKolonka(props) {
         setTextValue(e.target.value);
     }
 
+    const onBoolHandler = () => {
+        dispatch(KolonkaListAction.isModaBool({
+            text: props.header,
+            kolonkaIndex: props.kolonkaIndex,
+            itemIndex: ''
+        }));
+    }
+
 
     return (
         <KolonkaBlock>
-            <KolonkaHader>{props.header}</KolonkaHader>
+            <KolonkaHader>
+                {props.header}
+                <BtnAdd primary text="..." onClick={onBoolHandler} />
+            </KolonkaHader>
             {
-                store.map((item) => {
-                    console.log(item);
-                    return <KolonkaItem key={item.id} text={item.text} />
+                store.map((item, index) => {
+                    return <KolonkaItem key={item.id} text={item.text} index={index} kolonkaIndex={props.kolonkaIndex} />
                 })
             }
             {
@@ -69,12 +80,15 @@ const KolonkaBtnBlock = styled.div`
 `;
 
 const KolonkaHader = styled.h2`
+    display: flex;
+    justify-content: space-between;
     font-size: 1.2rem;
     color: #51617A;
     margin: 0;
     font-weight: bold;
     text-align: left;
     padding: 10px;
+    /* border: 1px solid red; */
 `;
 
 const KolonkaBlock = styled.div`

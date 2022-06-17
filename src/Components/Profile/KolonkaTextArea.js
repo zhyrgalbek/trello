@@ -15,4 +15,4 @@ const KolonkaTextAreaBlock = styled.textarea`
     &:focus{
         outline: none;
     }
-`
+`;

@@ -1,5 +1,6 @@
 import styled, {css} from 'styled-components';
-
+import {useDispatch} from 'react-redux';
+import {Exist} from '../../store/reducers/LoginSlices';
 
 let arr = [
     'Рабочие пространства',
@@ -41,6 +42,10 @@ const SeachInput = styled.input`
 
 
 function ProfileHeader() {
+    const dispatch = useDispatch();
+    const ExitProfile = ()=>{
+        dispatch(Exist());
+    }
     return (
         <ProfileHeaderCont>
             <ProfileUl>
@@ -55,7 +60,7 @@ function ProfileHeader() {
             </ProfileUl>
             <ProfileHeaderRight>
                 <SearchProfile />
-                <ProfileExit>Выйти</ProfileExit>
+                <ProfileExit onClick={ExitProfile}>Выйти</ProfileExit>
             </ProfileHeaderRight>
         </ProfileHeaderCont>
     )

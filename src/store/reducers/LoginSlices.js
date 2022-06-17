@@ -37,6 +37,10 @@ const AuthorizationSlices = createSlice({
             }
         
             
+        },
+        existUser(state){
+            state.proverkaLogin = false
+            state.proLogin = false
         }
         
     }
