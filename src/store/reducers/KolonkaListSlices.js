@@ -15,22 +15,37 @@ const KolonkaListSlices = createSlice({
     initialState,
     reducers: {
         removeItemOrColumn(state, action){
-            const itemIndex = state.prevItem.index;
+            let itemIndex = '';
             const columnIndex = state.prevItem.kolonkaIndex;
-            state.columns[columnIndex].items.splice(itemIndex, 1);
+            if(state.prevItem.index !== ''){
+                itemIndex = state.prevItem.index;
+                state.columns[columnIndex].items.splice(itemIndex, 1);
+            } else {
+                state.columns.splice(columnIndex, 1);
+            }
             state.isModal = !state.isModal;
         },
         saveItem(state, action) {
             state.isModal = !state.isModal;
-            const index = state.prevItem.index;
+            let index = '';
             const columnIndex = state.prevItem.kolonkaIndex;
             const text = action.payload.text;
-            state.columns[columnIndex].items[index].text = text;
+            if(state.prevItem.index !== ''){
+                index = state.prevItem.index;
+                state.prevItem.index = '';
+                state.columns[columnIndex].items[index].text = text;
+            } else {
+                state.columns[columnIndex].header = text;                
+            }
         },
         isModaBool(state, action) {
             state.isModal = !state.isModal;
+            if(action.payload.itemIndex !== ''){
+                state.prevItem.index = action.payload.itemIndex;
+            } else {
+                state.prevItem.index = '';
+            }
             state.prevItem.text = action.payload.text;
-            state.prevItem.index = action.payload.itemIndex;
             state.prevItem.kolonkaIndex = action.payload.kolonkaIndex;
         },
         addItem(state, action) {
