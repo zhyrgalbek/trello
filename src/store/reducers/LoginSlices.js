@@ -29,7 +29,6 @@ const AuthorizationSlices = createSlice({
 
         
             if(state.gmail === action.payload.email && state.password === action.payload.password){
-                console.log('hi');
                 state.proverkaLogin = true
                 state.proLogin = false
             }else{
@@ -38,6 +37,10 @@ const AuthorizationSlices = createSlice({
             }
         
             
+        },
+        existUser(state){
+            state.proverkaLogin = false
+            state.proLogin = false
         }
         
     }
