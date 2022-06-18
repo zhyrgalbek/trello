@@ -1,9 +1,9 @@
-import  { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react';
 
 export const  ValidInput = (state)  =>  {
-    const [value, setValue] = useState('')
-    const [isValue, setIsValue] = useState(false)
-    const [isBlur, setIsBlur] = useState(false)
+    const [value, setValue] = useState('');
+    const [isValue, setIsValue] = useState(false);
+    const [isBlur, setIsBlur] = useState(false);
 
 
     let isValid = state(value);

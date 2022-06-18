@@ -11,7 +11,12 @@ function TodoList() {
     const [showInput, setShowInput] = useState(false);
     const [inputValue, setInputValue] = useState('');
     const dispatch = useDispatch();
+    const searchValue = useSelector(state=>state.listItem.searchValue);
     const store = useSelector(state => state.listItem.columns);
+
+    let columns = store.filter((elem)=>{
+        return elem.header.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1;
+    });
 
     const inputHandleChange = (e) => {
         setInputValue(e.target.value);
@@ -38,8 +43,8 @@ function TodoList() {
     return (
         <TodoListBlock>
             {
-                store.map((elem, index) => {
-                    return <TodoKolonka key={elem.id} index={index} header={elem.header} kolonkaIndex={index} />
+                columns.map((elem) => {
+                    return <TodoKolonka key={elem.id} header={elem.header} columnId={elem.id} />
                 })
             }
             <BtnCont>

@@ -9,8 +9,7 @@ import BtnExit from './BtnExit';
 
 function TodoKolonka(props) {
     const dispatch = useDispatch();
-    const store = useSelector(state => state.listItem.columns[props.index].items);
-
+    const store = useSelector(state => state.listItem.columns.find(elem=>elem.id===props.columnId).items);
 
     const [textValue, setTextValue] = useState('');
     const [showTextArea, setShowTextArea] = useState(false);
@@ -21,7 +20,7 @@ function TodoKolonka(props) {
             dispatch(KolonkaListAction.addItem({
                 id: Math.random(),
                 text: textValue,
-                index: props.index
+                columnId: props.columnId
             }));
             setTextValue('');
             setShowTextArea(false);
@@ -39,8 +38,8 @@ function TodoKolonka(props) {
     const onBoolHandler = () => {
         dispatch(KolonkaListAction.isModaBool({
             text: props.header,
-            kolonkaIndex: props.kolonkaIndex,
-            itemIndex: ''
+            columnId: props.columnId,
+            itemId: ''
         }));
     }
 
@@ -52,8 +51,8 @@ function TodoKolonka(props) {
                 <BtnAdd primary text="..." onClick={onBoolHandler} />
             </KolonkaHader>
             {
-                store.map((item, index) => {
-                    return <KolonkaItem key={item.id} text={item.text} index={index} kolonkaIndex={props.kolonkaIndex} />
+                store.map((item) => {
+                    return <KolonkaItem key={item.id} text={item.text} itemId={item.id} columnId={props.columnId} />
                 })
             }
             {

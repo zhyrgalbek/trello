@@ -1,6 +1,7 @@
 import styled, {css} from 'styled-components';
 import {useDispatch} from 'react-redux';
 import {Exist} from '../../store/reducers/LoginSlices';
+import {KolonkaListAction} from '../../store/reducers/KolonkaListSlices';
 
 let arr = [
     'Рабочие пространства',
@@ -11,9 +12,16 @@ let arr = [
 ];
 
 function SearchProfile() {
+    const dispatch = useDispatch();
+    const searchChangeHandler = (e)=>{
+        dispatch(KolonkaListAction.searchChange({
+            value: e.target.value
+        }))
+    }
+
     return (
         <SeachBlock>
-            <SeachInput type="text" placeholder='Search' />
+            <SeachInput type="text" placeholder='Search' onChange={searchChangeHandler} />
         </SeachBlock>
     )
 }

@@ -5,54 +5,61 @@ const initialState = {
     isModal: false,
     prevItem: {
         text: '',
-        index: '',
-        kolonkaIndex: ''
-    }
+        itemId: '',
+        columnId: ''
+    },
+    searchValue: ''
 };
 
 const KolonkaListSlices = createSlice({
     name: 'List',
     initialState,
     reducers: {
-        removeItemOrColumn(state, action){
-            let itemIndex = '';
-            const columnIndex = state.prevItem.kolonkaIndex;
-            if(state.prevItem.index !== ''){
-                itemIndex = state.prevItem.index;
-                state.columns[columnIndex].items.splice(itemIndex, 1);
+        searchChange(state, action){
+            state.searchValue = action.payload.value;
+        }, 
+        removeItemOrColumn(state){
+            let itemId = '';
+            const columnId = state.prevItem.columnId;
+            const column = state.columns.find(elem=>elem.id===columnId);
+            if(state.prevItem.itemId !== ''){
+                itemId = state.prevItem.itemId;
+                let newItems = column.items.filter(elem=>elem.id!==itemId);
+                state.columns.find(elem=>elem.id===columnId).items = newItems;
             } else {
-                state.columns.splice(columnIndex, 1);
+                state.columns = state.columns.filter(elem=>elem.id !== columnId);
             }
             state.isModal = !state.isModal;
         },
         saveItem(state, action) {
             state.isModal = !state.isModal;
-            let index = '';
-            const columnIndex = state.prevItem.kolonkaIndex;
+            let itemId = '';
+            const columnId = state.prevItem.columnId;
             const text = action.payload.text;
-            if(state.prevItem.index !== ''){
-                index = state.prevItem.index;
-                state.prevItem.index = '';
-                state.columns[columnIndex].items[index].text = text;
+            if(state.prevItem.itemId !== ''){
+                itemId = state.prevItem.itemId;
+                state.prevItem.itemId = '';
+                state.columns.find(elem=>elem.id === columnId).items.find(elem=>elem.id === itemId).text = text;
             } else {
-                state.columns[columnIndex].header = text;                
+                state.columns.find(elem=>elem.id === columnId).header = text;
             }
         },
         isModaBool(state, action) {
             state.isModal = !state.isModal;
-            if(action.payload.itemIndex !== ''){
-                state.prevItem.index = action.payload.itemIndex;
+            if(action.payload.itemId !== ''){
+                state.prevItem.itemId = action.payload.itemId;
             } else {
-                state.prevItem.index = '';
+                state.prevItem.itemId = '';
             }
             state.prevItem.text = action.payload.text;
-            state.prevItem.kolonkaIndex = action.payload.kolonkaIndex;
+            state.prevItem.columnId = action.payload.columnId;
         },
         addItem(state, action) {
-            state.columns[action.payload.index].items.push({
+            const columnId = action.payload.columnId;
+            state.columns.find(elem => elem.id===columnId).items.push({
                 id: action.payload.id,
                 text: action.payload.text
-            })
+            }) 
         },
         addKolonka(state, action) {
             state.columns.push({

@@ -9,8 +9,8 @@ function KolonkaItem(props) {
     const onBoolHandler = () => {
         dispatch(KolonkaListAction.isModaBool({
             text: props.text,
-            itemIndex: props.index,
-            kolonkaIndex: props.kolonkaIndex
+            itemId: props.itemId,
+            columnId: props.columnId
         }));
     }
 
