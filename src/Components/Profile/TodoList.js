@@ -79,10 +79,12 @@ const BtnCont = styled.div`
 
 const TodoListBlock = styled.div`
     display: flex;
+    justify-content: flex-end;
     flex-flow: row nowrap;
-    justify-content: flex-start;
     align-items: flex-start;
-    /* border: 1px solid red; */
-    margin-top: 20px;
-    margin-left: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 60px;
+    position: absolute;
+    z-index: 1;
 `;

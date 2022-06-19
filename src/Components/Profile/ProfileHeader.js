@@ -119,4 +119,9 @@ const ProfileHeaderCont = styled.header`
     padding-right: 40px;
     display: flex;
     justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
 `;

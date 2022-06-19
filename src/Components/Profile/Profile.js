@@ -25,9 +25,14 @@ function Profile() {
 export default Profile;
 
 const ProfileBlock = styled.div`
-    background: url(${assets}) 0% 0%;
-    background-size: 100%;
+    background: url(${assets});
+    background-position: 0% 0%;
+    background-size: cover;
+    background-repeat: no-repeat;
     min-height: 100vh;
-
+    /* margin-top: 47px; */
+    overflow: auto;
+    /* overflow: auto; */
+    position: relative;
 `;
 
