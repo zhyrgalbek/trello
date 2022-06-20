@@ -17,7 +17,7 @@ function KolonkaItem(props) {
     return (
         <KolonkaItemBlock>
             {props.text}
-            <BtnAdd text="..." primary onClick={onBoolHandler}  />
+            <BtnAdd text="..." primary onClick={onBoolHandler}   />
         </KolonkaItemBlock>
     )
 }

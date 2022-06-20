@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 function KolonkaTextArea(props) {
-    return <KolonkaTextAreaBlock value={props.value} onChange={props.onChange} type="text" placeholder="Ввести текст"></KolonkaTextAreaBlock>
+    return <KolonkaTextAreaBlock autoFocus={true}
+    value={props.value} onChange={props.onChange} type="text" placeholder="Ввести текст"></KolonkaTextAreaBlock>
 }
 
 export default KolonkaTextArea;

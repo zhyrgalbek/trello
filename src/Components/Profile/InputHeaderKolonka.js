@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 function InputHeaderKolonka(props){
     return (
-        <Input type="text" value={props.value} onChange={props.onChange} placeholder="Ввести заголовок списка" />
+        <Input type="text" value={props.value} onChange={props.onChange} placeholder="Ввести заголовок списка" autoFocus={true}
+        />
     )
 }
 
