@@ -52,9 +52,9 @@ function App() {
               <CircularProgress />
             </Div>
           }
-                    <Profile />
+        
 
-          {/* <Authorization /> */}
+          <Authorization />
         </Route>
         <Route path="/profile" exact>
           {

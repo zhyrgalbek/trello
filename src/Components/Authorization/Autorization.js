@@ -1,5 +1,5 @@
 import styled, { createGlobalStyle } from "styled-components";
-import { ValidInput } from "../hooks/ValidInput";
+import { ValidInput } from "../../hooks/ValidInput";
 import { FetchUser } from "../../store/reducers/LoginSlices";
 import { useDispatch, useSelector } from 'react-redux';
 
