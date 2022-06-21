@@ -65,8 +65,8 @@ export const Exist = () => {
     return (dispatch) => {
         dispatch(AuthorActions.setSpiner())
         setTimeout(() => {
-            dispatch(AuthorActions.existUser())
             dispatch(AuthorActions.endSpiner())
+            dispatch(AuthorActions.existUser())
         }, 2000) 
     }
 }

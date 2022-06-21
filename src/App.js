@@ -11,49 +11,15 @@ function App() {
   const store = useSelector(state => state.user.spiner)
   const proverkaLogin = useSelector(state => state.user.proverkaLogin)
 
-  // if (store) {
-  //   return (
-  //     <div className="App">
-  //       <Div>
-  //         <CircularProgress />
-  //       </Div>
-  //     </div>
-  //   );
-  // }
-  // if (!proverkaLogin) {
-  //   return (
-  //     <div className="App">
-  //       {
-  //         store && <Div>
-  //           <CircularProgress />
-  //         </Div>
-  //       }
-  //       <Authorization />
-  //     </div>
-  //   )
-  // } else {
-  //   return (
-  //     <div className="App">
-  //       {
-  //         store && <Div>
-  //           <CircularProgress />
-  //         </Div>
-  //       }
-  //       <Profile />
-  //     </div>
-  //   );
-  // }
   return (
     <div className="App">
       <BrowserRouter>
-        <Route path="/" exact>
+        <Route path="/trello" exact>
           {
             store && <Div>
               <CircularProgress />
             </Div>
           }
-        
-
           <Authorization />
         </Route>
         <Route path="/profile" exact>
@@ -66,7 +32,7 @@ function App() {
         </Route>
         <Route exact to="/">
           {
-            !proverkaLogin ? <Redirect to="/" /> : <Redirect to="/profile" />
+            !proverkaLogin ? <Redirect to="/trello" /> : <Redirect to="/profile" />
           }
         </Route>
       </BrowserRouter>
@@ -79,12 +45,12 @@ export default App;
 
 
 const Div = styled.div`
-position: fixed;
-background-color: rgba(0, 0, 0, 0.8);
-width: 100vw;
-height: 100vh;
-display: flex;
-align-items: center;
-justify-content: center;
-z-index: 10;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
 `

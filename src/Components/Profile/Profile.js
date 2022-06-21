@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import TodoList from './TodoList';
 import ProfileHeader from './ProfileHeader';
-
+import assets from '../../assets/login.jpg';
 import Modal from './Modal/Modal';
 import { useSelector } from 'react-redux';
 
@@ -24,7 +24,7 @@ function Profile() {
 export default Profile;
 
 const ProfileBlock = styled.div`
-    background: url('https://i.pinimg.com/736x/32/b9/cd/32b9cd20c94f2a185e98859fc83ce123.jpg');
+    background: url(${assets});
     background-position: 0% 0%;
     background-size: cover;
     background-repeat: no-repeat;
