@@ -84,7 +84,7 @@ const ProfileHeaderRight = styled.div`
 const ProfileExit = styled.button`
     color: #fff;
     background-color: red;
-    border: 1px solid green;
+    border: none;
     cursor: pointer;
     margin-left: 50px;
 `;
